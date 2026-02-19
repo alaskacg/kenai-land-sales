@@ -9,21 +9,19 @@ export const getStripe = () => {
   return stripePromise
 }
 
+const PAYMENT_LINK = "https://buy.stripe.com/5kQcMYbUmdczcai0iK6J200"
+
 export async function createCheckoutSession(
   amount: number,
   listingId: string,
   type: 'listing' | 'featured',
-  userId: string
+  userId: string,
+  email?: string
 ) {
-  // For now, return a placeholder - will be replaced with actual API call
-  console.log('Creating checkout session:', { amount, listingId, type, userId })
-  
-  // In production, this would call your backend API
-  // const response = await fetch('/api/create-checkout-session', { ... })
-  
-  return {
-    url: `#/checkout?amount=${amount}&listing=${listingId}&type=${type}`
-  }
+  const encodedEmail = email ? encodeURIComponent(email) : ''
+  const url = `${PAYMENT_LINK}${encodedEmail ? `?prefilled_email=${encodedEmail}` : ''}`
+  window.location.href = url
+  return { url }
 }
 
 export const LISTING_PRICE = 1000 // $10 in cents
