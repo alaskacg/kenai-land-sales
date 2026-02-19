@@ -12,10 +12,10 @@ export const getStripe = () => {
 const PAYMENT_LINK = "https://buy.stripe.com/5kQcMYbUmdczcai0iK6J200"
 
 export async function createCheckoutSession(
-  amount: number,
-  listingId: string,
-  type: 'listing' | 'featured',
-  userId: string,
+  _amount: number,
+  _listingId: string,
+  _type: 'listing' | 'featured',
+  _userId: string,
   email?: string
 ) {
   const encodedEmail = email ? encodeURIComponent(email) : ''
